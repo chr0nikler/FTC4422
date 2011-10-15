@@ -26,7 +26,7 @@ task main()
     nxtDisplayTextLine(2, "Value is : %4d" + externalBatteryAvg);
     nxtDisplayTextLine(5, "Value is : %4d" + SensorValue[magnet]);
 
-    if (nImmediateBatteryLevel < 8000 && externalBatteryAvg < 14000)
+    /*if (nImmediateBatteryLevel < 8000 && externalBatteryAvg < 14000)
     {
       PlayTone(100, 5);
     }
@@ -39,7 +39,7 @@ task main()
     else if (externalBatteryAvg > 14000 && nImmediateBatteryLevel < 8000)
     {
       PlayTone(900, 5);
-    }
+    }*/
 
     //battery level check
 
@@ -85,6 +85,20 @@ task main()
     {
       motor[motorB] = 0;
     }
+    if(joy1Btn(5) == 1)
+    {
+      motor[motorC] = 100;
+    }
+    else if (joy1Btn(6) == 1)
+    {
+      motor[motorC] = -30;
+    }
+    else
+    {
+      motor[motorC] = 0;
+    }b
+
+
 
 
 

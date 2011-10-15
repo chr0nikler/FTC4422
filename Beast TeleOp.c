@@ -24,6 +24,7 @@
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages.
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                    initializeRobot
@@ -93,7 +94,7 @@ task main()
 
     if(abs(joystick.joy1_y1) > threshold)
     {
-      motor[motorE] = joystick.joy1_y1;\
+      motor[motorE] = joystick.joy1_y1;
 
     }
     else
