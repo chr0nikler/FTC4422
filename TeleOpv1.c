@@ -82,11 +82,11 @@ task main()
 
     if(joy1Btn(1) == 1)         //NXT servo magnetic scorer
     {
-      motor[motorB] = 40;
+      motor[motorB] = 20;
     }
     if(joy1Btn(2) == 1)
     {
-      motor[motorB] = -60;
+      motor[motorB] = -20;
     }
     if(joy1Btn(1) == 0 && joy1Btn(2) == 0)
     {
@@ -118,8 +118,21 @@ task main()
     }
     else if (joy1Btn(10) == 1)
     {
-      servo[servo3] = 150;
+      servo[servo3] = 100;
     }
+    if(joy1Btn(3) == 1)
+    {
+      motor[motorC] = 7;
+    }
+    else if(joy1Btn(4) == 1)
+    {
+      motor[motorC] = -7;
+    }
+    else
+    {
+      motor[motorC] = 0;
+    }
+
 
 
 
