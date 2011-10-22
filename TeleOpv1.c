@@ -133,12 +133,27 @@ task main()
       motor[motorC] = 0;
     }
 
+    //Weiyu's Tophat and alternative rear arm code
 
 
+   /*if (joystick.joy1_TopHat == 0)
+    {
+      motor[motorD] = 100;
+      motor[motorE] = 100;
+    }
+
+   if (joystick.joy1_TopHat == -1)
+    {
+      motor[motorD] = 0;
+      motor[motorE] = 0;
+    }
 
 
-
-
+    if (joystick.joy1_TopHat == 4)
+    {
+      motor[motorD] = -100;
+      motor[motorE] = -100;
+    }*/
 
 
   }
