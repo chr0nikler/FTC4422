@@ -201,10 +201,36 @@ task main()
 	  ///////////////////////////////////////////////////////////
 	  ///////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
     // Insert code to have servos and motors respond to joystick and button values.
 
     // Look in the ROBOTC samples folder for programs that may be similar to what you want to perform.
     // You may be able to find "snippets" of code that are similar to the functions that you want to
     // perform.
+=======
+    //Weiyu's Tophat and alternative rear arm code
+
+
+   /*if (joystick.joy1_TopHat == 0)
+    {
+      motor[motorD] = 100;
+      motor[motorE] = 100;
+    }
+
+   if (joystick.joy1_TopHat == -1)
+    {
+      motor[motorD] = 0;
+      motor[motorE] = 0;
+    }
+
+
+    if (joystick.joy1_TopHat == 4)
+    {
+      motor[motorD] = -100;
+      motor[motorE] = -100;
+    }*/
+
+
+>>>>>>> dev
   }
 }
