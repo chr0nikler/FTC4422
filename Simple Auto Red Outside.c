@@ -78,14 +78,14 @@ task main()
   time1(T1) = 0;
   motor[motorD] = 80;
   motor[motorE] = 80;
-  wait1Msec(2000);
+  wait1Msec(1800);
 
   motor[motorD] = 0;
   motor[motorE] = 0;
   wait1Msec(1000);
 
-  motor[motorD] = 40;
-  motor[motorE] = -40;
+  motor[motorD] = -40;
+  motor[motorE] = 40;
   wait1Msec(1600);
 
   motor[motorD] = 0;
@@ -94,12 +94,15 @@ task main()
 
   motor[motorD] = 80;
   motor[motorE] = 80;
-  wait1Msec(1000);
+  wait1Msec(2000);
 
   motor[motorD] = 0;
   motor[motorE] = 0;
   wait1Msec(1000);
 
+  motor[motorD] = -40;
+  motor[motorE] = 40;
+  wait1Msec(700);
 
 
   while (time1(T1) < 30000)

@@ -39,11 +39,29 @@
 // In many cases, you may not have to add any code to this function and it will remain "empty".
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+void initclaw()
+{
+  motor[motorA] = 50;
+  wait1Msec(1000);
+  motor[motorA] = 0;
+}
+
+void initmagclaw()
+{
+  motor[motorB] = -10;
+  wait1Msec(860);
+  motor[motorB] = 0;
+
+}
+
+
 
 void initializeRobot()
 {
-  // Place code here to sinitialize servos to starting positions.
-  // Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
+  initclaw();
+  initmagclaw();
+
+
 
   return;
 }
@@ -73,7 +91,7 @@ void initializeRobot()
 task main()
 {
   initializeRobot();
-
+  wait1Msec(1000);
   //waitForStart(); // Wait for the beginning of autonomous phase.
   time1(T1) = 0;
   motor[motorD] = 80;

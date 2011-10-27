@@ -84,8 +84,8 @@ task main()
   motor[motorE] = 0;
   wait1Msec(1000);
 
-  motor[motorD] = 40;
-  motor[motorE] = -40;
+  motor[motorD] = -40;
+  motor[motorE] = 40;
   wait1Msec(1600);
 
   motor[motorD] = 0;
