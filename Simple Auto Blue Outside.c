@@ -1,6 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  none,     none)
 #pragma config(Sensor, S2,     magnet,              sensorHiTechnicMagnetic)
 #pragma config(Sensor, S3,     IR,                  sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S4,     lightSensor,         sensorLightActive)
 #pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorNormal, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorNormal, openLoop)
 #pragma config(Servo,  srvo_S1_C2_1,    servo1,               tServoNone)
@@ -45,25 +46,23 @@ void initclaw()
   wait1Msec(1000);
   motor[motorA] = 0;
 }
+int x = 0;
 
-void initmagclaw()
+void lightsensed()
 {
-  motor[motorB] = -10;
-  wait1Msec(860);
-  motor[motorB] = 0;
-
+  while(nNxtButtonPressed != 3)
+  {
+   nxtDisplayTextLine(1, "Light Value is %d", SensorValue[lightSensor]);
+  }
+ x = SensorValue[lightSensor];
 }
-
 
 
 void initializeRobot()
 {
   initclaw();
-  initmagclaw();
+  lightsensed();
 
-
-
-  return;
 }
 
 
@@ -92,7 +91,7 @@ task main()
 {
   initializeRobot();
   wait1Msec(1000);
-  //waitForStart(); // Wait for the beginning of autonomous phase.
+  waitForStart(); // Wait for the beginning of autonomous phase.
   time1(T1) = 0;
   motor[motorD] = 80;
   motor[motorE] = 80;
@@ -110,18 +109,21 @@ task main()
   motor[motorE] = 0;
   wait1Msec(1000);
 
-  motor[motorD] = 80;
-  motor[motorE] = 80;
-  wait1Msec(1000);
-
-  motor[motorD] = 0;
-  motor[motorE] = 0;
+  motor[motorD] = 60;
+  motor[motorE] = 60;
   wait1Msec(1000);
 
 
 
   while (time1(T1) < 30000)
   {
+  if (SensorValue[lightSensor] <= x + 2)
+  {
+     motor[motorD] = 10;
+     motor[motorE] = 10;
+     wait1Msec(1500);
+     break;
+  }
   if (SensorValue[IR] < 3)
   {
     motor[motorD] = -40;

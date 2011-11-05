@@ -1,6 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  none,     none)
 #pragma config(Sensor, S2,     magnet,              sensorHiTechnicMagnetic)
 #pragma config(Sensor, S3,     IR,                  sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S4,     lightSensor,         sensorLightActive)
 #pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorNormal, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorNormal, openLoop)
 #pragma config(Servo,  srvo_S1_C2_1,    servo1,               tServoNone)
@@ -40,12 +41,27 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void initclaw()
+{
+  motor[motorA] = 50;
+  wait1Msec(1000);
+  motor[motorA] = 0;
+}
+
+int x = 0;
+void lightsensed()
+{
+  while(nNxtButtonPressed != 3)
+  {
+   nxtDisplayTextLine(1, "Light Value is %d", SensorValue[lightSensor]);
+  }
+ x = SensorValue[lightSensor];
+}
+
 void initializeRobot()
 {
-  // Place code here to sinitialize servos to starting positions.
-  // Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
-
-  return;
+ initclaw();
+ lightsensed();
 }
 
 
@@ -74,7 +90,7 @@ task main()
 {
   initializeRobot();
 
-  //waitForStart(); // Wait for the beginning of autonomous phase.
+  waitForStart(); // Wait for the beginning of autonomous phase.
   time1(T1) = 0;
   motor[motorD] = 80;
   motor[motorE] = 80;
@@ -92,21 +108,20 @@ task main()
   motor[motorE] = 0;
   wait1Msec(1000);
 
-  motor[motorD] = 80;
-  motor[motorE] = 80;
-  wait1Msec(2000);
-
-  motor[motorD] = 0;
-  motor[motorE] = 0;
+  motor[motorD] = 60;
+  motor[motorE] = 60;
   wait1Msec(1000);
-
-  motor[motorD] = -40;
-  motor[motorE] = 40;
-  wait1Msec(700);
 
 
   while (time1(T1) < 30000)
   {
+    if (SensorValue[lightSensor] <= x + 2)
+  {
+     motor[motorD] = 10;
+     motor[motorE] = 10;
+     wait1Msec(1500);
+     break;
+  }
   if (SensorValue[IR] < 3)
   {
     motor[motorD] = -40;
