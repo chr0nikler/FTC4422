@@ -51,6 +51,7 @@ task main()
     //battery level check
 
     getJoystickSettings(joystick);
+
     if(abs(joystick.joy1_y2) > threshold)
     {
       motor[motorE] = joystick.joy1_y2/1.5;
@@ -124,6 +125,7 @@ task main()
     {
       servo[servo4] = 0;
     }
+
     if(joy1Btn(9) == 1)
     {
       servo[servo3] = 200;

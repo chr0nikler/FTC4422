@@ -90,7 +90,7 @@ void initializeRobot()
 task main()
 {
   initializeRobot();
-
+  //wait1Msec(10000);
   waitForStart(); // Wait for the beginning of autonomous phase.
   time1(T1) = 0;
   motor[motorD] = 80;
@@ -116,13 +116,6 @@ task main()
 
   while (time1(T1) < 30000)
   {
-    if (SensorValue[lightSensor] <= x + 2)
-  {
-     motor[motorD] = 10;
-     motor[motorE] = 10;
-     wait1Msec(1500);
-     break;
-  }
   if (SensorValue[IR] < 3)
   {
     motor[motorD] = -40;
