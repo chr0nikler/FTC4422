@@ -111,7 +111,7 @@ task main()
 
     if(abs(joystick.joy1_y2) > threshold)
     {
-      motor[motorE] = joystick.joy1_y2/1.5;
+      motor[motorE] = joystick.joy1_y2/1;
     }
     else
     {

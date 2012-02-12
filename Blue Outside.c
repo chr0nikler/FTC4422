@@ -1,12 +1,11 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
-#pragma config(Sensor, S2,     mag1,           sensorHiTechnicMagnetic)
+#pragma config(Sensor, S2,     mag,            sensorHiTechnicMagnetic)
 #pragma config(Sensor, S3,     ir,             sensorHiTechnicIRSeeker1200)
-#pragma config(Sensor, S4,     mag2,           sensorHiTechnicMagnetic)
 #pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorNormal, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorNormal, openLoop)
 #pragma config(Motor,  mtr_S1_C2_1,     motorF,        tmotorNormal, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     motorG,        tmotorNormal, openLoop)
-#pragma config(Motor,  mtr_S1_C4_1,     motorH,        tmotorNormal, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_2,     motorG,        tmotorNormal, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C4_1,     motorH,        tmotorNone, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     motorI,        tmotorNone, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    servo1,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoStandard)
@@ -29,6 +28,7 @@
 
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages.
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                    initializeRobot
@@ -44,16 +44,12 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int x = 0;
-
-
 void initializeRobot()
 {
-  servo[servo3] = 60;
-  servo[servo1] = 0;
-  servo[servo2] = 255;
-  wait1Msec(1000);
+  // Place code here to sinitialize servos to starting positions.
+  // Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
 
+  return;
 }
 
 
@@ -81,53 +77,8 @@ void initializeRobot()
 task main()
 {
   initializeRobot();
-  //waitForStart(); // Wait for the beginning of autonomous phase.
-  time1(T1) = 0;
-  time1(T2) = 0;
-  motor[motorH] = 20;
-  motor[motorG] = 20;
-  wait1Msec(3000);
 
-  motor[motorH] = 0;
-  motor[motorG] = 0;
-  wait1Msec(1000);
-
-  motor[motorH] = 30;
-  motor[motorG] = -30;
-  wait1Msec(1700);
-
-  motor[motorH] = 20;
-  motor[motorG] = 20;
-  wait1Msec(500);
-
-
-
-
-  while (time1(T1) < 30000)
-  {
-
-  if (SensorValue[ir] < 4)
-  {
-    motor[motorG] = -40;
-    motor[motorH] = 40;
-  }
-  else if (SensorValue[ir] > 6)
-  {
-    motor[motorG] = 40;
-    motor[motorH] = -40;
-  }
-  else if (SensorValue[ir] > 4 &&   SensorValue[ir] < 6)
-  {
-    motor[motorG] = 30;
-    motor[motorH] = 30;
-  }
-
-
-  nxtDisplayTextLine(5, "Value is : %4d" + SensorValue[ir]);
-  }
-  motor[motorG] = 0;
-  motor[motorH] = 0;
-
+  waitForStart(); // Wait for the beginning of autonomous phase.
 
   ///////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
@@ -137,6 +88,6 @@ task main()
   ///////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
 
-
-
+  while (true)
+  {}
 }
